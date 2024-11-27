@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <welcome-file-list>
+        <welcome-file>CarList.jsp</welcome-file>
+    </welcome-file-list>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Car List Resource</web-resource-name>
+            <url-pattern>/car-list</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>manager</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <security-role>
+        <role-name>manager</role-name>
+    </security-role>
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>Car List Authentication</realm-name>
+    </login-config>
+    <servlet>
+        <servlet-name>ProcessUserInput</servlet-name>
+        <servlet-class>com.platar.platarweb.ProcessUserInput</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProcessUserInput</servlet-name>
+        <url-pattern>/ProcessUserInput</url-pattern>
+    </servlet-mapping>
+</web-app>
